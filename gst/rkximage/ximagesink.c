@@ -2645,7 +2645,8 @@ gst_x_image_sink_start (GstBaseSink * bsink)
         crtc->crtc_id, DRM_PLANE_TYPE_OVERLAY);
   else {
     plane = drmModeGetPlane (self->fd, self->plane_id);
-    if (drm_plane_get_type (self->fd, plane) == DRM_PLANE_TYPE_PRIMARY) {
+    if (drm_plane_get_type (self->fd, plane) == DRM_PLANE_TYPE_PRIMARY
+    	&& plane->crtc_id) {
       GST_ERROR_OBJECT (self, "Not support using primary plane");
       goto bail;
     }
