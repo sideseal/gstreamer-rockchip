@@ -1690,11 +1690,6 @@ gst_x_image_sink_handle_xevents (GstRkXImageSink * ximagesink)
           /* Handle window deletion by posting an error on the bus */
           GST_ELEMENT_ERROR (ximagesink, RESOURCE, NOT_FOUND,
               ("Output window was closed"), (NULL));
-
-          g_mutex_unlock (&ximagesink->x_lock);
-          gst_x_image_sink_xwindow_destroy (ximagesink, ximagesink->xwindow);
-          ximagesink->xwindow = NULL;
-          g_mutex_lock (&ximagesink->x_lock);
         }
         break;
       }
